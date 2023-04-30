@@ -42,7 +42,7 @@
   <!-- /.content-wrapper -->
 {footer}
 
-  
+  {custom}
 </div>
 <!-- ./wrapper -->
 

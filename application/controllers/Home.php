@@ -10,7 +10,8 @@ class Home extends CI_Controller {
 			'content' => $this->load->view('pages/dashboard', '', TRUE),
 			'sidebar' => $this->load->view('components/sidebar', '', TRUE),
 			'footer' => $this->load->view('components/footer', '', TRUE),
-			'navbar' => $this->load->view('components/navbar', '', TRUE)
+			'navbar' => $this->load->view('components/navbar', '', TRUE),
+			'custom' => $this->load->view('components/settingpage', '', TRUE),
 		];
 		$this->parser->parse('template', $data);
 	}
