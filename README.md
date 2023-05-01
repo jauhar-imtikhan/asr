@@ -31,33 +31,33 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Daftar Isi</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">Tentang Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Di Buat Dengan</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Mulai</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">Yang Di Butuhkan</a></li>
+        <li><a href="#installation">Instalasi</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#usage">Penggunaan</a></li>
+    <li><a href="#roadmap">Fitur</a></li>
+    <li><a href="#contributing">Kontribusi</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## Tentang Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
@@ -65,7 +65,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 <p align="right">(<a href="#readme-top">Kembali Keatas</a>)</p>
 
-### Built With
+### Di Buat Dengan
 
 - [![CodeIgniter 3](https://img.shields.io/badge/CodeIgniter-3-blue?style=for-the-badge&logo=codeigniter)](https://codeigniter.com/)
 - [![Bootstrap][Bootstrap.com]][Bootstrap-url]
