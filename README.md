@@ -47,7 +47,7 @@
       </ul>
     </li>
     <li><a href="#usage">Penggunaan</a></li>
-    <li><a href="#roadmap">Fitur</a></li>
+    <li><a href="#fitur">Fitur</a></li>
     <li><a href="#contributing">Kontribusi</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
