@@ -7,7 +7,7 @@ $author = $data->author;
   <div class="pull-right hidden-xs">
     <b>Version</b> <?= $version ?>
 
-    Environment : <?php echo ENVIRONMENT; ?>
+    <span class="text-danger"><?php echo ENVIRONMENT; ?></span>
   </div>
   <strong>Copyright &copy; <?= date('Y') ?> <a href="https://github.com/jauhar-imtikhan"><?= $author ?></a></strong> All rights
   reserved.
