@@ -34,8 +34,8 @@
                                 <td class="text-center"><?= $row['email'] ?></td>
                                 <td class="text-center"><?= $row['level'] ?></td>
                                 <td class="text-center"><?= $row['alamat'] ?></td>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                <td class="text-center" width="10%">
+                                    <a href="" class="btn btn-primary "><i class="fa fa-edit"></i></a>&nbsp;
                                     <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>

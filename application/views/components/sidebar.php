@@ -45,7 +45,7 @@
         </li>
         <li class="header">User</li>
         <li>
-          <a href="#">
+          <a href="<?= site_url('user') ?>">
             <i class="fa fa-users"></i> <span>User</span>
           </a>
         </li>

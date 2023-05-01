@@ -1,6 +1,6 @@
 <?php
 
-use Dotenv\Dotenv;
+
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -61,7 +61,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('parser', 'database', 'session');
+$autoload['libraries'] = array('parser', $_ENV['DATABASE'], $_ENV['SESSION'], $_ENV['FUNGSI'], $_ENV['EMAIL'], $_ENV['FORM']);
 
 /*
 | -------------------------------------------------------------------
