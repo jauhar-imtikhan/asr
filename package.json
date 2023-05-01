@@ -1,20 +1,21 @@
 {
-  "name": "asr",
-  "version": "1.0.0",
-  "description": "Aplikasi E-Comerse Interior ASR-Furniture",
-  "main": "index.php",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "asr-furniture"
-  },
-  "keywords": [
-    "interior",
-    "meubel",
-    "kayu"
-  ],
-  "author": "Jauhar-Imtikhan",
-  "license": "ISC"
+	"name": "asr",
+	"version": "1.0.0",
+	"description": "Aplikasi E-Comerse Interior ASR-Furniture",
+	"main": "index.php",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": " browser-sync start --proxy localhost/asr --files 'application/**/*.php'"
+	},
+	"repository": {
+		"type": "git",
+		"url": "asr-furniture"
+	},
+	"keywords": [
+		"interior",
+		"meubel",
+		"kayu"
+	],
+	"author": "Jauhar-Imtikhan",
+	"license": "ISC"
 }
