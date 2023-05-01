@@ -63,7 +63,7 @@
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `jauhar-imtikhan`, `asr`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">Kembali Keatas</a>)</p>
 
 ### Built With
 
@@ -72,7 +72,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 - [![JQuery][JQuery.com]][JQuery-url]
 - [![Node.js](https://img.shields.io/badge/Node.js-14.x-green?style=for-the-badge&logo=node.js)](https://nodejs.org/)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">Kembali Keatas</a>)</p>
 
 <!-- GETTING STARTED -->
 
