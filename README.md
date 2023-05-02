@@ -10,7 +10,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/jauhar-imtikhan/asr">
-    <img src="assets/images/logo-black.png" alt="Logo">
+    <img src="assets/images/logo-white.png" width="50%" alt="Logo">
   </a>
 
 <h3 align="center">ASR Furniture</h3>
