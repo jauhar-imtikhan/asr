@@ -1,10 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends CI_Controller
+{
 
 	public function index()
 	{
+		check_not_login();
 		$data = [
 			'title' => 'Dashboard',
 			'content' => $this->load->view('pages/dashboard', '', TRUE),

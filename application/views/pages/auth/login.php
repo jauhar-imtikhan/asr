@@ -33,7 +33,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">Halaman Login</p>
 
-            <form action="<?= site_url('auth/login') ?>" method="post">
+            <form action="<?= site_url('auth') ?>" method="post">
                 <div class="form-group has-feedback">
                     <input type="text" class="form-control" placeholder="Email" name="email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -54,7 +54,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block ">Login</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -62,10 +62,7 @@
 
             <div class="social-auth-links text-center">
                 <p>- ATAU -</p>
-                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-                    Facebook</a>
-                <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-                    Google+</a>
+                <?= $login_button ?>
             </div>
             <!-- /.social-auth-links -->
 

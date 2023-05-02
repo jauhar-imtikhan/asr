@@ -66,8 +66,10 @@
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
   <script src="<?= base_url() ?>assets/plugins/datatable/jszip.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/datatable/pdfmake.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/datatable/pdfmake.min.js.map"></script>
+  <script src="<?= base_url() ?>assets/bower_components/pdfmake/build/pdfmake.js"></script>
+
+
+
   <script src="<?= base_url() ?>assets/plugins/datatable/vfs_fonts.js"></script>
   <script>
     $(document).ready(function() {
