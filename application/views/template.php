@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
 
+  <link rel="stylesheet" href="<?= base_url() ?>node_modules/sweetalert2/dist/sweetalert2.min.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -67,9 +68,7 @@
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
   <script src="<?= base_url() ?>assets/plugins/datatable/jszip.min.js"></script>
   <script src="<?= base_url() ?>assets/bower_components/pdfmake/build/pdfmake.js"></script>
-
-
-
+  <script src="<?= base_url() ?>node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
   <script src="<?= base_url() ?>assets/plugins/datatable/vfs_fonts.js"></script>
   <script>
     $(document).ready(function() {

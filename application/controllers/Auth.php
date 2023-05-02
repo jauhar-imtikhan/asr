@@ -44,8 +44,11 @@ class Auth extends CI_Controller
                                 'level' => $user['level'],
                                 'jam' => $s,
                                 'nama' => $user['nama_depan'],
-                                'picture' => 'img.jpg',
+                                'picture' => base_url() . 'assets/dist/img/' . $user['foto_user'],
                                 'email' => $user['email'],
+                                'method' => 'db',
+                                'alamat' => $user['alamat'],
+                                'nowa' => $user['nowa']
                             );
                             if ($user['level'] == '1') {
                                 $this->session->set_userdata($params);
@@ -88,14 +91,15 @@ class Auth extends CI_Controller
             $email_user = $userInfo->email;
             $picture = $userInfo->picture;
             date_default_timezone_set('Asia/Jakarta');
-            $s = date('i');
+            $s = date('G:i:s') . ' WIB';
             $params = array(
                 'userid' => $accessToken,
-                'level' => 2,
+                'level' => '2',
                 'nama' => $name,
                 'picture' => $picture,
                 'email' => $email_user,
-                'jam' => $s
+                'jam' => $s,
+                'method' => 'google'
             );
             $this->session->set_userdata($params);
             redirect('home');

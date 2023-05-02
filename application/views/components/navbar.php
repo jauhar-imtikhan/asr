@@ -51,60 +51,36 @@
         <li class="dropdown notifications-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell-o"></i>
-            <span class="label label-warning">10</span>
+            <span class="label label-warning"><?php
+                                              if (isset($all_notif)) {
+                                                echo $all_notif;
+                                              }
+                                              ?></span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">You have 10 notifications</li>
+            <li class="header">Anda Memiliki <?= $all_notif ?> Notifikasi! <span class="pull-right"><a href="" class="text-red">Hapus Semua <i class="fa fa-trash"></i></a></span></li>
             <li>
               <!-- inner menu: contains the actual data -->
               <ul class="menu">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                  </a>
-                </li>
+                <?php foreach ($getnotif as $notif) { ?>
+                  <li>
+                    <a href="<?= site_url('allnotif/delbyid/' . $notif->id) ?>">
+                      <i class="<?= $notif->icon_notif ?>"></i><?= $notif->isi_notif ?>
+                      <span class="pull-right"><i class="fa fa-trash text-red"></i></span>
+                    </a>
+                  </li>
+                <?php } ?>
               </ul>
             </li>
             <li class="footer"><a href="#">View all</a></li>
           </ul>
         </li>
-        <!-- Tasks: style can be found in dropdown.less -->
-        <li class="dropdown tasks-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-flag-o"></i>
-            <span class="label label-danger">9</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li class="header">You have 9 tasks</li>
-            <li>
-              <!-- inner menu: contains the actual data -->
-              <ul class="menu">
-                <li><!-- Task item -->
-                  <a href="#">
-                    <h3>
-                      Design some buttons
-                      <small class="pull-right">20%</small>
-                    </h3>
-                    <div class="progress xs">
-                      <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                        <span class="sr-only">20% Complete</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <!-- end task item -->
-              </ul>
-            </li>
-            <li class="footer">
-              <a href="#">View all tasks</a>
-            </li>
-          </ul>
-        </li>
+
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="<?= $this->session->userdata('picture') ?>" class="user-image" alt="User Image">
-            <span class="hidden-xs"><?= $this->session->userdata('nama') ?></span>
+            <span class="hidden-xs"><?= ucfirst($this->session->userdata('nama')) ?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -114,28 +90,19 @@
 
               <p>
                 <?= $this->session->userdata('email') ?>
-                <small>Bergabung Sejak </small>
+                <small>Anda Login Pada : <?= $this->session->userdata('jam') ?></small>
               </p>
             </li>
             <!-- Menu Body -->
-            <li class="user-body">
-              <div class="row">
-                <div class="col-xs-4 text-center">
-                  <a href="#">Followers</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Sales</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Friends</a>
-                </div>
-              </div>
-              <!-- /.row -->
-            </li>
+
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <?php if ($this->session->userdata('level') == '1') { ?>
+                  <a href="<?= site_url('profile/user') ?>" class="btn btn-default btn-flat">Profile</a>
+                <?php } else if ($this->session->userdata('level') == '2') { ?>
+                  <a href="<?= site_url('profile/user') ?>" class="btn btn-default btn-flat">Profile</a>
+                <?php } ?>
               </div>
               <div class="pull-right">
                 <a href="<?= site_url('auth/logout') ?>" class="btn btn-default btn-flat">Log out</a>

@@ -74,7 +74,7 @@
             </form>
 
 
-            <a href="login.html" class="text-center">Login</a>
+            <a href="<?= base_url('auth') ?>" class="text-center">Login</a>
         </div>
         <!-- /.form-box -->
     </div>

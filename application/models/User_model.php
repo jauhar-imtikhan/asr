@@ -17,4 +17,25 @@ class User_model extends CI_Model
         $query = $this->db->get_where('user', ['email' => $id])->row_array();
         return $query;
     }
+
+    public function rowId($id)
+    {
+        $this->db->get_where('user', ['user_id' => $id])->result_array();
+    }
+
+    public function user_login($id = null)
+    {
+        $this->db->from('user');
+        if ($id != null) {
+            $this->db->where('user_id', $id);
+        }
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function updateProfile($id, $data)
+    {
+        $this->db->where('user_id', $id);
+        $this->db->update('user', $data);
+    }
 }
