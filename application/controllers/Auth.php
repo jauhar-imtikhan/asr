@@ -116,6 +116,7 @@ class Auth extends CI_Controller
             'trim|required|min_length[11]',
             array('min_length[11]', 'Minimal 11 angka')
         );
+        $this->form_validation->set_rules('aggre', 'Terms', 'required');
 
         $this->form_validation->set_message('required', '{field} Harus Diisi');
         $this->form_validation->set_message('valid_email', '{field} Harus Mengandung Karakter @');
@@ -123,13 +124,121 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('pages/auth/register');
-        }
+        } else {
+            $token = base64_encode(random_bytes(32));
+            $nama = $this->input->post('nama');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $conf_pass = $this->input->post('password2');
+            $no_tlp = $this->input->post('no');
+            $agree = $this->input->post('aggre');
+            $namadepan = explode(" ", $nama);
+            $time = time();
+            $us = [
+                'nama_depan' => $namadepan[0],
+                'nama_belakang' => $namadepan[1],
+                'email' => $email,
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+                'level' => 2,
+                'status' => 0,
+                'agree' => $agree,
+                'nowa' => $no_tlp
+            ];
 
-        $nama = $this->input->post('nama');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $conf_pass = $this->input->post('passwordconf');
-        $no_tlp = $this->input->post('no');
+            $user_token = [
+                'token' => $token,
+                'email' => $email,
+                'date_created' => $time
+            ];
+            $this->db->insert('token', $user_token);
+            $this->db->insert('user', $us);
+            $this->_sendemail($token, 'verifikasi');
+            redirect('auth');
+        }
+    }
+
+    private function _sendemail($token, $type)
+    {
+        $config = [
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com', // atau smptp lainnya                
+            'smtp_user' => 'sahidfurniture0@gmail.com',  // Email gmail admin aplikasi
+            'smtp_pass'   => 'eqceqohibzglrhgb',  // Password Gmail atau Sandi Aplikasi Gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+        $this->load->library('email', $config);
+        $this->email->from('sahidfurniture0@gmail.com', 'Verifikasi Akun ASR Furniture');
+        $this->email->to($this->input->post('email'));
+        $verification = array(
+            'verification_link' => site_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token)
+        );
+        $message = $this->load->view('extras/verifikasiemail', $verification, TRUE);
+        if ($type == "verifikasi") {
+            $this->email->subject('Selamat Datang Di Website ASR Furniture');
+            $this->email->message($message);
+            $this->email->send();
+        } elseif ($type == "forgot") {
+            $this->email->subject('Email Notifikasi Reset Password');
+            $this->email->message('<h3>Link Reset Password Akan Expired Setelah 5 Menit</h3> Klik Link Di Bawah Untuk Reset Password : ' . '<br/>' . '<a href="' . site_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . ' ">RESET PASSWORD</a>');
+            $this->email->send();
+        }
+    }
+
+    public function verify()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+        $time = time();
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('token', ['token' => $token])->row_array();
+            if ($user_token) {
+                if ($time - $user_token['date_created'] < (300)) {
+                    $this->db->update('user', ['status' => 1]);
+                    $this->db->delete('token', ['token' => $token]);
+                    $this->session->set_flashdata('msg', '<div class="alert alert-success">
+                        <button class="close" data-dismiss="alert">
+                            <span>×</span>
+                        </button>
+                       Berhasil Aktivasi Akun Silahkan Login!
+                </div>');
+                    redirect('auth');
+                } else {
+                    $this->db->delete('token', ['token' => $token]);
+                    $this->db->delete('user', ['email' => $email]);
+                    $this->session->set_flashdata('msg', '<div class="alert alert-danger">
+                        <button class="close" data-dismiss="alert">
+                            <span>×</span>
+                        </button>
+                        Gagal Aktivasi Akun, Token Expired Silahkan Melakukan Pendaftaran Ulang!
+                </div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-danger">
+               
+                    <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                    </button>
+                    Gagal Aktivasi Akun, Email Belum Terdaftar!
+               
+            </div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('msg', '< class="alert alert-danger">
+                <button class="close" data-dismiss="alert">
+                    <span>×</span>
+                </button>
+                Gagal Aktivasi Akun, Token Salah!
+        </div>');
+        }
     }
 
     public function logout()

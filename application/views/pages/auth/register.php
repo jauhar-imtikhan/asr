@@ -29,38 +29,39 @@
         </div>
 
         <div class="register-box-body">
-            <p class="login-box-msg">Halaman Register </p>
+            <p class="login-box-msg">Halaman Register</p>
 
             <form action="<?= base_url('auth/registrasi') ?>" method="post">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap">
+                    <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" value="<?= set_value('nama') ?>">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     <span class="text-danger"><?= form_error('nama') ?></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Email" name="email">
+                    <input type="text" class="form-control" placeholder="Email" name="email" value="<?= set_value('email') ?>">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     <span class="text-danger"><?= form_error('email') ?></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="<?= set_value('password') ?>">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    <span class="tex-danger"><?= form_error('password') ?></span>
+                    <span class="text-danger"><?= form_error('password') ?></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Konfirmasi Password" name="password2">
+                    <input type="password" class="form-control" placeholder="Konfirmasi Password" name="password2" value="<?= set_value('password2') ?>">
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                     <span class="text-danger"><?= form_error('password2') ?></span>
                 </div>
                 <div class="form-group has-feedback">
                     <input type="number" name="no" value="<?= set_value('no') ?>" class="form-control" placeholder="Nomor Whatsapp">
                     <span class=" form-control-feedback"><img src="<?= base_url() ?>assets/images/whatsapp.svg" alt="Number Whatsapp" width="20"></span>
+                    <span class="text-danger"><?= form_error('no') ?></span>
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
                             <label>
-                                <input type="checkbox"> I agree to the <a href="<?= site_url('auth/terms') ?>">terms</a>
+                                <input type="checkbox" value="1" name="aggre"> I agree to the <a href="<?= site_url('auth/terms') ?>">terms</a>
                             </label>
                         </div>
                     </div>
@@ -72,15 +73,8 @@
                 </div>
             </form>
 
-            <div class="social-auth-links text-center">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-                    Facebook</a>
-                <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-                    Google+</a>
-            </div>
 
-            <a href="login.html" class="text-center">I already have a membership</a>
+            <a href="login.html" class="text-center">Login</a>
         </div>
         <!-- /.form-box -->
     </div>
