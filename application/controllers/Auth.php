@@ -98,20 +98,49 @@ class Auth extends CI_Controller
                 'jam' => $s
             );
             $this->session->set_userdata($params);
-            $data['picture'] = $picture;
-            $this->session->set_flashdata('foto', $picture);
             redirect('home');
         }
     }
 
+    public function registrasi()
+    {
+        $this->load->library('form_validation');
 
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]');
+        $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'trim|matches[password]');
+        $this->form_validation->set_rules(
+            'no',
+            'No Wa',
+            'trim|required|min_length[11]',
+            array('min_length[11]', 'Minimal 11 angka')
+        );
 
+        $this->form_validation->set_message('required', '{field} Harus Diisi');
+        $this->form_validation->set_message('valid_email', '{field} Harus Mengandung Karakter @');
+        $this->form_validation->set_message('matches', '{field} Tidak Sama Dengan Password');
 
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('pages/auth/register');
+        }
+
+        $nama = $this->input->post('nama');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $conf_pass = $this->input->post('passwordconf');
+        $no_tlp = $this->input->post('no');
+    }
 
     public function logout()
     {
         $params = array('userid', 'level', 'nama', 'picture', 'email', 'jam');
         $this->session->unset_userdata($params);
         redirect('auth');
+    }
+
+    public function terms()
+    {
+        $this->load->view('pages/terms/terms');
     }
 }
