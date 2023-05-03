@@ -61,7 +61,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `jauhar-imtikhan`, `asr`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Ini adalah project E-meubel developed by: `Jauhar Imtikhan`
 
 <p align="right">(<a href="#readme-top">Kembali Keatas</a>)</p>
 
