@@ -63,10 +63,71 @@ class Profile extends CI_Controller
             'id_notification' => $id,
             'isi_notif' => 'Anda Berhasil Update Data User',
             'icon_notif' => 'fa fa-user text-green',
-            'redirect' => $this->uri->segment()
         ];
         $this->db->insert('all_notification', $notifications);
 
         redirect('profile/user');
+    }
+
+    public function changepicture($id)
+    {
+
+        if (isset($_FILES['file'])) {
+            $file = $_FILES['file'];
+
+
+            move_uploaded_file($file['tmp_name'], 'uploads/' . $file['name']);
+
+
+            $foto = [
+                'foto_user' => $file['name']
+            ];
+            $this->load->model('user_model');
+            $file_foto = $this->user_model->rowId($id);
+            if ($file_foto['foto_user'] != 'default.jpg') {
+                unlink('uploads/' . $file_foto['foto_user']);
+            }
+            $this->db->where('user_id', $id);
+            $this->db->update('user', $foto);
+
+            $data = [
+                'id_notification' => $id,
+                'isi_notifikasi' => 'Berhasil Update Foto Profile!',
+                'icon_notif' => 'fa fa-user text-red'
+            ];
+
+            $this->db->insert('all_notification', $data);
+            echo json_encode('baja');
+        }
+    }
+    public function update_photo($id)
+    {
+        $config['upload_path'] = FCPATH . 'uploads/';
+        $config['allowed_types'] = 'svg|jpg|jpeg|png';
+        $config['encrypt_name'] = FALSE;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('photo')) {
+            $oldFileName = $this->db->select('*')->get_where('user', ['user_id' => $id])->row()->foto_user;
+
+            if (!empty($oldFileName) == 'default.jpg') {
+                unlink('uploads/' . $oldFileName);
+            }
+
+            $data = ['foto_user' => $this->upload->data('file_name')];
+            $this->db->where('user_id', $id)->update('user', $data);
+            $data = [
+                'id_notification' => $id,
+                'isi_notif' => 'Berhasil Update Foto Profile!',
+                'icon_notif' => 'fa fa-user text-red'
+            ];
+
+            $this->db->insert('all_notification', $data);
+
+            echo 'user';
+        } else {
+            echo 'user';
+        }
     }
 }

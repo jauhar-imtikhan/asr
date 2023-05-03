@@ -24,4 +24,10 @@ class Notif_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('all_notification');
     }
+
+    public function deleteAllById($id)
+    {
+        $this->db->where('id_notification', $id);
+        $this->db->delete('all_notification');
+    }
 }

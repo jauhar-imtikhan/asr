@@ -9,9 +9,17 @@ class Allnotif extends CI_Controller
         $data = [
             'id_notification' => $this->session->userdata('userid'),
             'isi_notif' =>  'Notifikasi Terhapus!',
-            'icon_notif' => 'fa fa-user text-green'
+            'icon_notif' => 'fa fa-user text-red'
         ];
         $this->db->insert('all_notification', $data);
+        $url = $this->input->server('HTTP_REFERER');
+        redirect($url);
+    }
+
+    public function deleteall($id)
+    {
+        $this->load->model('Notif_model');
+        $this->Notif_model->deleteAllById($id);
         $url = $this->input->server('HTTP_REFERER');
         redirect($url);
     }

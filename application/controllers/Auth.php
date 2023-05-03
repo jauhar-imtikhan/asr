@@ -44,7 +44,7 @@ class Auth extends CI_Controller
                                 'level' => $user['level'],
                                 'jam' => $s,
                                 'nama' => $user['nama_depan'],
-                                'picture' => base_url() . 'assets/dist/img/' . $user['foto_user'],
+                                'picture' => base_url() . 'uploads/' . $user['foto_user'],
                                 'email' => $user['email'],
                                 'method' => 'db',
                                 'alamat' => $user['alamat'],

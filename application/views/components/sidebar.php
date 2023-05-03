@@ -5,7 +5,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?= $this->session->userdata('picture') ?>" class="img-circle" alt="User Image">
+          <img src="<?= base_url('uploads/') . $this->fungsi->user_login()->foto_user ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?= ucfirst($this->session->userdata('nama')) ?></p>

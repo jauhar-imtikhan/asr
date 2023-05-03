@@ -54,22 +54,30 @@
             <span class="label label-warning"><?php
                                               if (isset($all_notif)) {
                                                 echo $all_notif;
+                                              } else {
+                                                echo "0";
                                               }
                                               ?></span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">Anda Memiliki <?= $all_notif ?> Notifikasi! <span class="pull-right"><a href="" class="text-red">Hapus Semua <i class="fa fa-trash"></i></a></span></li>
+            <li class="header">Anda Memiliki <? if (isset($all_notif)) {
+                                                echo $all_notif;
+                                              }
+                                              ?> Notifikasi! <span class="pull-right" data-toggle="tooltip" data-placement="right" title="Hapus Semua Notifikasi"><a href="<?= site_url('allnotif/deleteall/' . $this->session->userdata('userid')) ?>" class="text-red"> <i class="fa fa-trash"></i></a></span></li>
             <li>
               <!-- inner menu: contains the actual data -->
               <ul class="menu">
-                <?php foreach ($getnotif as $notif) { ?>
-                  <li>
-                    <a href="<?= site_url('allnotif/delbyid/' . $notif->id) ?>">
-                      <i class="<?= $notif->icon_notif ?>"></i><?= $notif->isi_notif ?>
-                      <span class="pull-right"><i class="fa fa-trash text-red"></i></span>
-                    </a>
-                  </li>
-                <?php } ?>
+                <?php
+                if (isset($getnotif)) {
+                  foreach ($getnotif as $notif) { ?>
+                    <li>
+                      <a href="<?= site_url('allnotif/delbyid/' . $notif->id) ?>" data-toggle="tooltip" data-placement="bottom" title="Hapus Notifikasi Ini">
+                        <i class="<?= $notif->icon_notif ?>"></i><?= $notif->isi_notif ?>
+                        <span class="pull-right"><i class="fa fa-trash text-red"></i></span>
+                      </a>
+                    </li>
+                <?php }
+                }  ?>
               </ul>
             </li>
             <li class="footer"><a href="#">View all</a></li>
@@ -79,14 +87,14 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="<?= $this->session->userdata('picture') ?>" class="user-image" alt="User Image">
+            <img src="<?= base_url('uploads/') . $this->fungsi->user_login()->foto_user ?>" class="user-image" alt="User Image">
             <span class="hidden-xs"><?= ucfirst($this->session->userdata('nama')) ?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
 
-              <img src="<?= $this->session->userdata('picture'); ?>" class="img-circle" alt="User Image">
+              <img src="<?= base_url('uploads/') . $this->fungsi->user_login()->foto_user ?>" class="img-circle" alt="User Image">
 
               <p>
                 <?= $this->session->userdata('email') ?>

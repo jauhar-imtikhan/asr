@@ -77,15 +77,18 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="<?= $this->session->userdata('picture') ?>" alt="User profile picture">
+                        <img class="profile-user-img img-responsive img-circle" src="<?= base_url('uploads/') . $data['foto_user'] ?>" alt="User profile picture">
 
                         <h3 class="profile-username text-center"><?= ucfirst($this->session->userdata('nama')) ?></h3>
 
                         <p class="text-muted text-center"><?= $this->session->userdata('email') ?></p>
 
                     </div>
-                    <div class="box-footer box-profile">
-                        <input type="file" name="" id="" class="form-control">
+                    <div class="box-footer box-profile text-center">
+                        <form action="" id="upload-form" method="post" enctype="multipart/form-data">
+                            <small>Ganti Foto Profile</small>
+                            <input type="file" name="photo" id="file-input" class="form-control">
+                        </form>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -142,7 +145,7 @@
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputSkills" value="<?php if ($data['nowa'] == null) {
-                                                                                                            echo 'Tidak Ada Nomor Whatsapp';
+                                                                                                            echo '-';
                                                                                                         } else {
                                                                                                             echo $data['nowa'];
                                                                                                         } ?>" name="nowa" placeholder="Nomor Whatsapp">
@@ -168,13 +171,25 @@
     <!-- /.row -->
 
 </section>
-<?php if ($this->session->flashdata('berhasilupdatedatauser')) : ?>
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: '<a href="">Why do I have this issue?</a>'
+
+<script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#file-input').on('change', function() {
+            var file = $(this)[0].files[0]
+            var formData = new FormData($('#upload-form')[0])
+            formData.append('file', file)
+
+            $.ajax({
+                type: 'POST',
+                url: 'update_photo/<?= $this->session->userdata('userid') ?>',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                    window.location.replace(res)
+                }
+            })
         })
-    </script>
-<?php endif; ?>
+    })
+</script>
