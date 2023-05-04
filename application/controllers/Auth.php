@@ -38,13 +38,13 @@ class Auth extends CI_Controller
                     if ($user['status'] == 1) {
                         if (password_verify($pass, $user['password'])) {
                             date_default_timezone_set('Asia/Jakarta');
-                            $s = date('i');
+                            $s = date('G:i:s') . ' WIB';
                             $params = array(
                                 'userid' => $user['user_id'],
                                 'level' => $user['level'],
                                 'jam' => $s,
                                 'nama' => $user['nama_depan'],
-                                'picture' => base_url() . 'uploads/' . $user['foto_user'],
+                                'picture' => '',
                                 'email' => $user['email'],
                                 'method' => 'db',
                                 'alamat' => $user['alamat'],
@@ -53,11 +53,11 @@ class Auth extends CI_Controller
                             if ($user['level'] == '1') {
                                 $this->session->set_userdata($params);
                                 $this->session->set_flashdata('login', 'berhasil');
-                                redirect('home');
+                                redirect('dashboard/admin');
                             } else if ($user['level'] == '2') {
                                 $this->session->set_userdata($params);
                                 $this->session->set_flashdata('login', 'berhasil');
-                                redirect('toko');
+                                redirect('dashboard/toko');
                             }
                         } else {
                             $this->session->set_flashdata('msg', ' <div class="alert alert-danger">
@@ -86,14 +86,14 @@ class Auth extends CI_Controller
             $accessToken = $client->getAccessToken();
             $oauth2 = new Google_Service_Oauth2($client);
             $userInfo = $oauth2->userinfo->get();
-
+            $rand = rand(0, 10000);
             $name = $userInfo->name;
             $email_user = $userInfo->email;
             $picture = $userInfo->picture;
             date_default_timezone_set('Asia/Jakarta');
             $s = date('G:i:s') . ' WIB';
             $params = array(
-                'userid' => $accessToken,
+                'userid' => $rand,
                 'level' => '2',
                 'nama' => $name,
                 'picture' => $picture,
@@ -102,7 +102,7 @@ class Auth extends CI_Controller
                 'method' => 'google'
             );
             $this->session->set_userdata($params);
-            redirect('home');
+            redirect('dashboard/toko');
         }
     }
 

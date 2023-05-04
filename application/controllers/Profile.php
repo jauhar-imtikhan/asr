@@ -124,7 +124,6 @@ class Profile extends CI_Controller
             ];
 
             $this->db->insert('all_notification', $data);
-
             echo 'user';
         } else {
             echo 'user';

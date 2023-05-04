@@ -26,6 +26,7 @@ class User_model extends CI_Model
     public function user_login($id = null)
     {
         $this->db->from('user');
+        $this->db->join('level', 'level.level_id=user.level');
         if ($id != null) {
             $this->db->where('user_id', $id);
         }
