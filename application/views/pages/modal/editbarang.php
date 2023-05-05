@@ -30,7 +30,7 @@ $query = $this->db->get_where('databarang', ['id_barang' => $id])->row_array();
             </div>
             <div class="form-group">
                 <label>Foto Barang</label>
-                <input type="file" name="photo" value="<?= $query['foto'] ?>" class="form-control">
+                <input type="file" name="photo" class="form-control">
             </div>
         </div>
 

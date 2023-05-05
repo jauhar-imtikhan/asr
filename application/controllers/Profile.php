@@ -25,14 +25,17 @@ class Profile extends CI_Controller
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <strong><i class="fa fa-ban"></i> Maaf!</strong> Di karenakan Anda Login Menggunakan Google, Maka Anda Tidak Dapat Mengubah Profile Anda!
 </div>';
+            $this->load->model('Notif_model');
             $row['alamat'] = 'Belum Punya Alamat';
             $row['level'] = $this->db->get('level')->result_array();
+            $notif['all_notif'] = $this->Notif_model->CountAllNotifById($this->session->userdata('userid'));
+            $notif['getnotif'] = $this->Notif_model->get_all_notif($this->session->userdata('userid'));
             $data = [
                 'title' => 'User Profile',
                 'content' => $this->load->view('pages/profile/user_profile', $row, TRUE),
                 'sidebar' => $this->load->view('components/sidebar', '', TRUE),
                 'footer' => $this->load->view('components/footer', '', TRUE),
-                'navbar' => $this->load->view('components/navbar', '', TRUE),
+                'navbar' => $this->load->view('components/navbar', $notif, TRUE),
                 'custom' => $this->load->view('components/settingpage', '', TRUE),
             ];
             $this->parser->parse('template', $data);
