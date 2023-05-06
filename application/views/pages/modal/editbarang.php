@@ -1,10 +1,10 @@
 <?php $id = $this->input->get('id');
 $query = $this->db->get_where('databarang', ['id_barang' => $id])->row_array();
 ?>
-<form action="<?= site_url('databarang/updatedatabarang/' . $query['id_barang']) ?>" method="post">
+<form action="<?= site_url('databarang/updatedatabarang/' . $query['id_barang']) ?>" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-4" id="gambar">
-            <img src="<?= base_url('uploads/' . $query['foto']) ?>" alt="Foto Barang" class="img-rounded " style="margin-top: 20px; margin-left:20px;">
+            <img src="<?= base_url('uploads/' . $query['foto']) ?>" alt="Foto Barang" class="img-rounded " style="margin-top: 20px; margin-left:20px; width: 50%;">
         </div>
         <div class="col-md-8">
             <div class="form-group">
@@ -36,7 +36,6 @@ $query = $this->db->get_where('databarang', ['id_barang' => $id])->row_array();
 
     </div>
     <div class="modal-footer">
-        <button class="btn btn-secondary" data-dismiss="modal" type="button">Tutup</button>
         <button type="submit" name="save" class="btn btn-primary">Simpan</button>
     </div>
 </form>

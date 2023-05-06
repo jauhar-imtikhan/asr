@@ -5,6 +5,7 @@ class Profile extends CI_Controller
 {
     public function user()
     {
+        check_not_login();
         if ($this->session->userdata('method') == 'db') {
             $this->load->model('Notif_model');
             $row['data'] = $this->db->get_where('user', ['user_id' => $this->session->userdata('userid')])->row_array();

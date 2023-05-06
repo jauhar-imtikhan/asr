@@ -5,6 +5,7 @@ class User extends CI_Controller
 {
     public function index()
     {
+        check_not_login();
         $this->load->model('User_model');
         $row['data'] = $this->User_model->get();
         $this->load->model('Notif_model');

@@ -5,10 +5,9 @@
             <h3 class="box-title">User</h3>
 
             <div class="box-tools pull-right">
+                <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Tambah Barang" id="addbarang"><i class="fa fa-plus"></i></button>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                    <i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="box-body">
@@ -33,9 +32,9 @@
                                 <td class="text-center"><?= $row['harga_barang'] ?></td>
                                 <td class="text-center"><?= ucfirst($row['nama_kategori']) ?></td>
                                 <td class="text-center"><?= ucfirst($row['deskripsi']) ?></td>
-                                <td class="text-center" width="10%">
+                                <td class="text-center" width="15%">
                                     <button onclick="editDataBarang('<?= $row['id_barang'] ?>')" class="btn btn-primary "><i class="fa fa-edit"></i></button>&nbsp;
-                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                    <button onclick="DelById('<?= $row['id_barang'] ?>', '<?= $row['nama_barang'] ?>')" class="btn btn-danger"><i class="fa fa-trash"></i></button>&nbsp;
                                     <button onclick="detailBarang('<?= $row['id_barang'] ?>')" class="btn btn-secondary"><i class="fa fa-eye"></i></button>
                                 </td>
                             </tr>
@@ -48,7 +47,8 @@
         <!-- /.box-body -->
     </div>
     <!-- /.box -->
-    <div class="modal fade" id="modal-detail-barang">
+    <!-- Modal Detail Barang -->
+    <div class="modal fade" id="modal-detail-barang" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,8 +103,7 @@
     </div>
 
     <!-- Modal Edit Barang -->
-
-    <div class="modal fade" id="modal-edit-barang">
+    <div class="modal fade" data-backdrop="static" id="modal-edit-barang">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -118,6 +117,24 @@
         </div>
     </div>
 
+    <!-- Modal Add Barang -->
+
+
+    <div class="modal fade" data-backdrop="static" id="modal-add-barang">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modal-add-title"></h4>
+                </div>
+                <div class="modal-body" id="modal-add-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </section>
 <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
@@ -130,7 +147,61 @@
                 'excel', 'pdf'
             ]
         })
+        // Ketika input file berubah
+        $('#photo').change(function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                $('#tampilFoto').attr('src', reader.result);
+            }
+
+            if (file) {
+                reader.readAsDataURL(file); // Membaca file sebagai URL data
+            } else {
+                $('#tampilFoto').attr('src', '#');
+            }
+        });
+        $('#addbarang').click(function() {
+            $('#modal-add-barang').modal('show')
+            $('#modal-add-title').text('Tambah Barang')
+            $.ajax({
+                url: 'databarang/addbarang',
+                success: function(res) {
+                    $('#modal-add-body').html(res)
+                }
+            })
+        })
+
     })
+
+    function DelById(id, nama) {
+        Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Setelah Menghapus Data User Anda Tidak Dapat Mengembalikannya!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: 'databarang/delete/' + id,
+                    success: function(res) {
+                        Swal.fire({
+                            title: 'Terhapus!',
+                            text: 'Anda Berhasil Menghapus Barang ' + nama,
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            location.reload()
+                        })
+                    }
+                })
+            }
+        })
+
+    }
 
     function detailBarang(id) {
         $('#modal-detail-barang').modal('show')
