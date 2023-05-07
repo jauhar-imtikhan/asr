@@ -35,7 +35,7 @@
                                 <td class="text-center"><?= $row['level'] ?></td>
                                 <td class="text-center"><?= $row['alamat'] ?></td>
                                 <td class="text-center" width="10%">
-                                    <a href="" class="btn btn-primary "><i class="fa fa-edit"></i></a>&nbsp;
+                                    <button onclick="edituser('<?= $row['user_id'] ?>')" class="btn btn-primary "><i class="fa fa-edit"></i></button>&nbsp;
                                     <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
@@ -48,6 +48,23 @@
         <!-- /.box-body -->
     </div>
     <!-- /.box -->
+
+    <!-- Modal edit User -->
+
+
+    <div class="modal fade" id="modal-edit-user">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modal-edit-title"></h4>
+                </div>
+                <div class="modal-body" id="modal-edit-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
@@ -63,5 +80,19 @@
             ]
         })
     })
+
+    function edituser(id) {
+        $('#modal-edit-user').modal('show')
+        $('#modal-edit-title').text('Modal Edit User')
+        $.ajax({
+            url: 'user/edituser',
+            data: {
+                id: id
+            },
+            success: function(res) {
+                $('#modal-edit-body').html(res)
+            }
+        })
+    }
 </script>
 <!-- /.content -->

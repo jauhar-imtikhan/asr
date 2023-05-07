@@ -21,4 +21,9 @@ class User extends CI_Controller
         ];
         $this->parser->parse('template', $data);
     }
+
+    public function edituser()
+    {
+        $this->load->view('pages/modal/edituser');
+    }
 }
