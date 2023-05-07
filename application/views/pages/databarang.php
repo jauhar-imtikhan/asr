@@ -178,7 +178,7 @@
     function DelById(id, nama) {
         Swal.fire({
             title: 'Apakah Anda Yakin?',
-            text: "Setelah Menghapus Data User Anda Tidak Dapat Mengembalikannya!",
+            text: "Setelah Menghapus Data Barang Anda Tidak Dapat Mengembalikannya!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

@@ -2,7 +2,7 @@
 $id = $this->input->get('id');
 $row = $this->db->get_where('user', ['user_id' => $id])->row_array();
 ?>
-<form action="" method="post">
+<form action="<?= site_url('user/proedituser/' . $row['user_id']) ?>" method="post">
     <div class="form-group">
         <label>Nama Depan</label>
         <input type="text" name="namdep" class="form-control" value="<?= $row['nama_depan'] ?>">
@@ -30,9 +30,9 @@ $row = $this->db->get_where('user', ['user_id' => $id])->row_array();
     </div>
     <div class="form-group">
         <label>Nomor Whatsapp</label>
-        <input type="number" class="form-control" value="<?= $row['nowa'] ?>">
+        <input type="number" class="form-control" value="<?php echo $row['nowa']  ?>" name="nowa">
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Submit</button>
     </div>
 </form>
-<div class="modal-footer">
-    <button class="btn btn-primary" type="submit">Submit</button>
-</div>

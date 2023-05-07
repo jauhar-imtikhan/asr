@@ -8,7 +8,10 @@ class User_model extends CI_Model
 {
     public function get()
     {
-        $query = $this->db->get('user');
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('level', 'level.level_id=user.level');
+        $query = $this->db->get();
         return $query->result_array();
     }
 
