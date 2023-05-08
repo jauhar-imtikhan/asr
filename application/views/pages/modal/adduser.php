@@ -1,4 +1,4 @@
-<form action="<?= site_url('user/proadduser') ?>" method="post">
+<form action="<?= site_url('user/proadduser') ?>" method="post" autocomplete="off">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">

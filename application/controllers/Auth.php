@@ -51,6 +51,7 @@ class Auth extends CI_Controller
                                 'nowa' => $user['nowa']
                             );
                             if ($user['level'] == '1') {
+                                $this->session->set_userdata('previous_page', current_url());
                                 $this->session->set_userdata($params);
                                 $this->session->set_flashdata('login', 'berhasil');
                                 redirect('dashboard/admin');
@@ -101,6 +102,7 @@ class Auth extends CI_Controller
                 'jam' => $s,
                 'method' => 'google'
             );
+            $this->session->set_userdata('previous_page', current_url());
             $this->session->set_userdata($params);
             redirect('dashboard/toko');
         }

@@ -4,6 +4,7 @@ class Dashboard extends CI_Controller
 {
     public function admin()
     {
+        not_admin();
         $this->load->model('Notif_model');
         $row['data'] = 'data';
         $notif['all_notif'] = $this->Notif_model->CountAllNotifById($this->session->userdata('userid'));

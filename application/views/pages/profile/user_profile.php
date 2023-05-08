@@ -103,7 +103,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane" id="settings" style="display: block;">
-                            <form class="form-horizontal" action="<?= site_url('profile/update/' . $this->session->userdata('userid')) ?>" method="post">
+                            <form class="form-horizontal" action="<?= site_url('profile/update/' . $this->session->userdata('userid')) ?>" method="post" autocomplete="off">
                                 <div class="form-group">
                                     <label for="inputName" class="col-sm-2 control-label">Nama Lengkap</label>
 
