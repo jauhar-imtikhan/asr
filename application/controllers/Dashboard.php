@@ -2,13 +2,23 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Dashboard extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('encryption');
+    }
+
+
+
     public function admin()
     {
-        not_admin();
+        check_not_login();
         $this->load->model('Notif_model');
+        $this->load->library('encryption');
         $row['data'] = 'data';
         $notif['all_notif'] = $this->Notif_model->CountAllNotifById($this->session->userdata('userid'));
         $notif['getnotif'] = $this->Notif_model->get_all_notif($this->session->userdata('userid'));
+
         $data = [
             'title' => 'Dashoard admin',
             'content' => $this->load->view('pages/dashboard/dashboard_admin', $row, TRUE),

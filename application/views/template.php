@@ -26,56 +26,89 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<?php if ($this->session->userdata('level') == '1') : ?>
 
-<body class="hold-transition skin-blue sidebar-mini">
-  <!-- Site wrapper -->
-  <div class="wrapper">
+  <body class="hold-transition skin-blue sidebar-mini" id="bodybre">
+    <!-- Site wrapper -->
+    <div class="wrapper">
 
-    {navbar}
+      {navbar}
 
-    <!-- =============================================== -->
+      <!-- =============================================== -->
 
-    {sidebar}
+      {sidebar}
 
-    <!-- =============================================== -->
+      <!-- =============================================== -->
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      {content}
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        {content}
+      </div>
+      <!-- /.content-wrapper -->
+      {footer}
+
+      {custom}
+
     </div>
-    <!-- /.content-wrapper -->
-    {footer}
+    <!-- ./wrapper -->
 
-    {custom}
+    <!-- jQuery 3 -->
+    <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
+    <script src="<?= base_url() ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/datatable/jszip.min.js"></script>
+    <script src="<?= base_url() ?>assets/bower_components/pdfmake/build/pdfmake.js"></script>
+    <script src="<?= base_url() ?>node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/datatable/vfs_fonts.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('.sidebar-menu').tree()
+      })
+    </script>
+  </body>
+<?php endif; ?>
 
-  </div>
-  <!-- ./wrapper -->
+<?php if ($this->session->userdata('level') == '2') : ?>
 
-  <!-- jQuery 3 -->
-  <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap 3.3.7 -->
-  <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- SlimScroll -->
-  <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-  <!-- FastClick -->
-  <script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
-  <!-- AdminLTE App -->
-  <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/datatable/jszip.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/pdfmake/build/pdfmake.js"></script>
-  <script src="<?= base_url() ?>node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/datatable/vfs_fonts.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('.sidebar-menu').tree()
-    })
-  </script>
-</body>
+  <body class="hold-transition skin-blue layout-top-nav">
+    <div class="wrapper">
+
+      {navbar}
+      <!-- Full Width Column -->
+      <div class="content-wrapper">
+        {content}
+        <!-- /.container -->
+      </div>
+      <!-- /.content-wrapper -->
+      {footer}
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery 3 -->
+    <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
+  </body>
+<?php endif; ?>
 
 </html>

@@ -79,7 +79,7 @@ $config['cache_path'] = '';
 $config['cache_query_string'] = FALSE;
 
 
-$config['encryption_key'] = '';
+$config['encryption_key'] = '$2y$10$Lt8MNLk.s/SF/SApl0uOjug34SXL4zkztYl6mNhy9GHTzsbT.Rk1K';
 
 
 $config['sess_driver'] = 'files';

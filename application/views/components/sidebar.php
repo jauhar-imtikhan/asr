@@ -5,7 +5,11 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?= $this->session->userdata('picture') ?>" class="img-circle" alt="User Image">
+            <img src="<?php if ($this->session->userdata('picture')) {
+                        echo $this->session->userdata('picture');
+                      } else {
+                        echo base_url('uploads/default.jpg');
+                      } ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p><?= ucfirst($this->session->userdata('nama')) ?></p>
@@ -63,9 +67,30 @@
         <?php } else if ($this->session->userdata('level') == '2') { ?>
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Dashboard</li>
-            <li>
-              <a href="<?= site_url('dashboard/toko') ?>">
+            <li class="treeview">
+              <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <?php if ($this->session->userdata('level') == '1') { ?>
+                  <li><a href="<?= base_url('dashboard/admin') ?>"><i class="fa fa-circle-o"></i> Admin</a></li>
+                  <li><a href="<?= base_url('dashboard/toko') ?>"><i class="fa fa-circle-o"></i> Toko</a></li>
+                <?php } else if ($this->session->userdata('level') == '2') { ?>
+                  <li><a href="<?= base_url('dashboard/toko') ?>"><i class="fa fa-circle-o"></i> Toko</a></li>
+                <?php } ?>
+              </ul>
+            </li>
+            <li class="header">Keranjang</li>
+            <li>
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Keranjang</span>
+                <span class="pull-right-container">
+                  <span class="label label-primary pull-right">4</span>
+                </span>
               </a>
             </li>
           </ul>
@@ -110,7 +135,10 @@
               </ul>
             </li>
             <li>
-              <a href="<?= site_url('databarang') ?>"><i class="fa fa-th"></i> Data Barang</a>
+              <a href="<?= site_url('databarang') ?>">
+                <i class="fa fa-th"></i>
+                <span>Data Barang</span>
+              </a>
             </li>
             <li class="treeview">
               <a href="#">

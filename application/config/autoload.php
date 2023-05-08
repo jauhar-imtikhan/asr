@@ -61,7 +61,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('parser',  $_ENV['DATABASE'], $_ENV['SESSION'], $_ENV['FUNGSI'], $_ENV['EMAIL'], $_ENV['CART']);
+$autoload['libraries'] = array('parser',  $_ENV['DATABASE'], $_ENV['SESSION'], $_ENV['FUNGSI'], $_ENV['EMAIL'], $_ENV['CART'], $_ENV['ENCRYPTION']);
 
 /*
 | -------------------------------------------------------------------

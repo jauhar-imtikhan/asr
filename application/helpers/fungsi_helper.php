@@ -6,9 +6,16 @@ function check_already_login()
     $level = $ci->session->userdata('level');
     if ($user_session) {
         if ($level == 1) {
-            redirect('dashboard/admin');
+            $ci->load->library('encryption');
+            $url = $ci->encryption->encrypt('dashboard/admin');
+            // $encrypted_url = $ci->encryption->($url);
+            redirect($url);
         } else {
-            redirect('dashboard/toko');
+            $ci->load->library('encryption');
+            $url = $ci->encryption->encrypt('dashboard/toko');
+            // $encrypted_url = $ci->encryption->($url);
+
+            redirect($url);
         }
     }
 }
