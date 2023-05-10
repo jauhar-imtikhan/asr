@@ -11,7 +11,7 @@ class Auth extends CI_Controller
         $client = new Google_Client();
         $client->setClientId('602864832294-dp4k5vn9n0gqfctnh0dup3052lgvbeic.apps.googleusercontent.com');
         $client->setClientSecret('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');
-        $client->setRedirectUri('http://localhost:3000/asr/auth');
+        $client->setRedirectUri($_ENV['OAUTH_URL']);
         $client->addScope('email');
         $client->addScope('profile');
 

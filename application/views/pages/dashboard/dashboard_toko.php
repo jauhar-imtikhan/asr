@@ -5,11 +5,6 @@
 
    <div id="myCarousel" class="carousel slide " data-ride="carousel">
      <!-- Indicators -->
-     <ol class="carousel-indicators">
-       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-       <li data-target="#myCarousel" data-slide-to="1"></li>
-       <li data-target="#myCarousel" data-slide-to="2"></li>
-     </ol>
 
      <!-- Slides -->
      <div class="carousel-inner">
@@ -25,167 +20,82 @@
        </div>
      </div>
 
-     <!-- Controls -->
-     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-       <span class="glyphicon glyphicon-chevron-left"></span>
-     </a>
-     <a class="right carousel-control" href="#myCarousel" data-slide="next">
-       <span class="glyphicon glyphicon-chevron-right"></span>
-     </a>
+
+   </div>
+   <div style="margin-top: 15px;">
+     <div class="alert alert-warning">
+       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+       <strong><i class="fa fa-info"></i>nfo! </strong> Barang Yang Ada Pada Keranjang Akan Hilang Setelah Anda Keluar Dari Website!
+     </div>
    </div>
    <div style="margin-top: 15px;">
      <div class="row">
-       <div class="col-md-4 col-sm-4">
-         <div class="box box-default">
-           <div class="box-header with-border">
-             <h3 class="box-title">Browser Usage</h3>
+       <?php
 
-             <div class="box-tools pull-right">
-               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-               </button>
-               <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-             </div>
-           </div>
-           <!-- /.box-header -->
-           <div class="box-body">
-             <div class="row">
-               <div class="col-md-8">
-                 <div class="chart-responsive">
-                   <canvas id="pieChart" height="160" width="150" style="width: 150px; height: 160px;"></canvas>
-                 </div>
-                 <!-- ./chart-responsive -->
-               </div>
-               <!-- /.col -->
-               <div class="col-md-4">
-                 <ul class="chart-legend clearfix">
-                   <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                   <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                   <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                   <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                   <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                   <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
-                 </ul>
-               </div>
-               <!-- /.col -->
-             </div>
-             <!-- /.row -->
-           </div>
-           <!-- /.box-body -->
-           <div class="box-footer no-padding">
-             <ul class="nav nav-pills nav-stacked">
-               <li><a href="#">United States of America
-                   <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-               <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
-               </li>
-               <li><a href="#">China
-                   <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
-             </ul>
-           </div>
-           <!-- /.footer -->
-         </div>
-       </div>
-       <div class="col-md-4 col-sm-4">
-         <div class="box box-default">
-           <div class="box-header with-border">
-             <h3 class="box-title">Browser Usage</h3>
+        foreach ($databarang as $barang) { ?>
+         <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
+           <div class="panel">
 
-             <div class="box-tools pull-right">
-               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-               </button>
-               <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-             </div>
-           </div>
-           <!-- /.box-header -->
-           <div class="box-body">
-             <div class="row">
-               <div class="col-md-8">
-                 <div class="chart-responsive">
-                   <canvas id="pieChart" height="160" width="150" style="width: 150px; height: 160px;"></canvas>
+             <!-- /.box-header -->
+             <div class="panel-body">
+               <div class="row">
+                 <div class="col-md-6 col-sm-6 ">
+                   <div class="image">
+                     <img src="<?= base_url('uploads/' . $barang['foto']) ?>" alt="<?= $barang['foto'] ?>" class="img-rounded" style="width: 200px;">
+                   </div>
                  </div>
-                 <!-- ./chart-responsive -->
+                 <div class="col-md-6 col-sm-6 ">
+                   <dl style="margin-left: 10px;">
+                     <dt class="h3"><?= ucfirst($barang['nama_barang']) ?></dt>
+                     <dd class="h4"><?= Rp($barang['harga_barang']) ?></dd>
+                     <dt class="h5"><?= $barang['deskripsi'] ?></dt>
+                   </dl>
+                 </div>
                </div>
-               <!-- /.col -->
-               <div class="col-md-4">
-                 <ul class="chart-legend clearfix">
-                   <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                   <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                   <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                   <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                   <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                   <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
-                 </ul>
-               </div>
-               <!-- /.col -->
+               <!-- /.row -->
              </div>
-             <!-- /.row -->
-           </div>
-           <!-- /.box-body -->
-           <div class="box-footer no-padding">
-             <ul class="nav nav-pills nav-stacked">
-               <li><a href="#">United States of America
-                   <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-               <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
-               </li>
-               <li><a href="#">China
-                   <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
-             </ul>
-           </div>
-           <!-- /.footer -->
-         </div>
-       </div>
-       <div class="col-md-4 col-sm-4">
-         <div class="box box-default">
-           <div class="box-header with-border">
-             <h3 class="box-title">Browser Usage</h3>
+             <!-- /.box-body -->
+             <div class="box-footer ">
+               <ul class="nav nav-pills nav-stacked ">
+                 <form action="<?= site_url('dashboard/addkeranjang') ?>" method="post">
+                   <input type="hidden" name="id" value="<?= $barang['id_barang'] ?>">
+                   <input type="hidden" name="nama_barang" value="<?= $barang['nama_barang'] ?>">
+                   <input type="hidden" name="harga_barang" value="<?= $barang['harga_barang'] ?>">
+                   <input type="hidden" name="des_barang" value="<?= $barang['deskripsi'] ?>">
+                   <input type="hidden" name="foto_barang" value="<?= $barang['foto'] ?>">
+                   <li>
+                     <span class="pull-right">
+                       <?php for ($i = 0; $i < count($rating) && $i < $barang['rating']; $i++) { ?>
+                         <span style="color: gold;"><i class="fa fa-star"></i></span>
+                       <?php } ?>
+                     </span>
+                     <button class="btn btn-danger" data-target="tooltip" data-placement="top" title="Detail Produk"><i class="fa fa-eye"></i></button>&nbsp;&nbsp;
+                     <button class="btn btn-warning" type="submit" data-target="tooltip" data-placement="top" title="Tambah Ke Keranjang"><i class="fa fa-shopping-cart"></i></button>&nbsp;&nbsp;
+                     <button class="btn btn-info" data-target="tooltip" data-placement="top" title="Pesan Barang"><i class="fa fa-clipboard"></i> Pre Order</button>
+                   </li>
+                 </form>
 
-             <div class="box-tools pull-right">
-               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-               </button>
-               <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+               </ul>
              </div>
+             <!-- /.footer -->
            </div>
-           <!-- /.box-header -->
-           <div class="box-body">
-             <div class="row">
-               <div class="col-md-8">
-                 <div class="chart-responsive">
-                   <canvas id="pieChart" height="160" width="150" style="width: 150px; height: 160px;"></canvas>
-                 </div>
-                 <!-- ./chart-responsive -->
-               </div>
-               <!-- /.col -->
-               <div class="col-md-4">
-                 <ul class="chart-legend clearfix">
-                   <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                   <li><i class="fa fa-circle-o text-green"></i> IE</li>
-                   <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                   <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                   <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                   <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
-                 </ul>
-               </div>
-               <!-- /.col -->
-             </div>
-             <!-- /.row -->
-           </div>
-           <!-- /.box-body -->
-           <div class="box-footer no-padding">
-             <ul class="nav nav-pills nav-stacked">
-               <li><a href="#">United States of America
-                   <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span></a></li>
-               <li><a href="#">India <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span></a>
-               </li>
-               <li><a href="#">China
-                   <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
-             </ul>
-           </div>
-           <!-- /.footer -->
          </div>
-       </div>
+
+       <?php } ?>
      </div>
    </div>
+   <nav aria-label="Page navigation" class="text-center">
+     <?= $this->pagination->create_links() ?>
+   </nav>
 
 
  </section>
  <!-- /.content -->
  <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+ <script>
+   $(document).ready(function() {
+     $('#addKeranjang').on('click', function() {
+
+     })
+   })
+ </script>
