@@ -6,13 +6,14 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         $this->load->library('encryption');
+        check_not_login();
     }
 
 
 
     public function admin()
     {
-        check_not_login();
+
         $this->load->model('Notif_model');
         $this->load->library('encryption');
         $row['data'] = 'data';
@@ -72,6 +73,8 @@ class Dashboard extends CI_Controller
         $notif['all_notif'] = $this->Notif_model->CountAllNotifById($this->session->userdata('userid'));
         $notif['getnotif'] = $this->Notif_model->get_all_notif($this->session->userdata('userid'));
         $notif['cart'] = $this->cart->contents();
+        $notif['get_payment_notif'] = $this->Notif_model->getAllPaymentNotif($this->session->userdata('userid'));
+        $notif['hitung_payment_notif'] = $this->Notif_model->hitungPaymentNotif($this->session->userdata('userid'));
         $data = [
             'title' => 'Dashboard toko',
             'content' => $this->load->view('pages/dashboard/dashboard_toko', $row, TRUE),
@@ -98,6 +101,7 @@ class Dashboard extends CI_Controller
         $harga = $this->input->post('harga_barang');
         $deskripsi = $this->input->post('des_barang');
         $foto = $this->input->post('foto_barang');
+        $berat = $this->input->post('berat');
 
         $data = array(
             'id'                  => $id,
@@ -105,7 +109,8 @@ class Dashboard extends CI_Controller
             'price'               => $harga,
             'name'                => $nama,
             'description'         => $deskripsi,
-            'foto'                => $foto
+            'foto'                => $foto,
+            'berat'               => $berat
         );
 
         $this->cart->insert($data);

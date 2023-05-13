@@ -4,7 +4,7 @@
         <section class="header">
             <h3>Detail Barang</h3>
         </section>
-
+        <?= $this->session->userdata('userid') ?>
         <section class="body">
             <div class="row">
                 <?php foreach ($databarang as $barang) { ?>
@@ -109,10 +109,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-4">
-                        <h4>Harga Dp : <?php $t = $this->cart->total();
-                                        $dis = $t * 40 / 100;
-                                        echo Rp($dis); ?>
-                        </h4>
                         <h4>
                             Total Harga : <?= Rp($this->cart->total()) ?>
                         </h4>
@@ -148,12 +144,12 @@
         </style>
     </div>
 
-    <div class="modal fade" id="Tunai">
+    <div class="modal fade" data-backdrop="static" id="Tunai">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-
-                    <h4 class="modal-title">Tunai</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Tunai</h3>
                 </div>
                 <div class="modal-body" id="modal-tunai-body">
                 </div>
@@ -234,6 +230,9 @@
                     $('#' + replace).modal('show')
                 } else {
                     $('#' + pay).modal('show')
+                    $('#' + pay).on('hidden.bs.modal', function(e) {
+                        location.reload();
+                    });
                     $.ajax({
                         method: 'GET',
                         url: 'tunai',

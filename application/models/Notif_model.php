@@ -30,4 +30,26 @@ class Notif_model extends CI_Model
         $this->db->where('id_notification', $id);
         $this->db->delete('all_notification');
     }
+
+    public function hitungPaymentNotif($id)
+    {
+        $this->db->select("COUNT(*) as jumlah");
+        $this->db->where('id_notification', $id);
+        $result = $this->db->get('payment_notification')->row();
+        return $result->jumlah;
+    }
+
+    public function getAllPaymentNotif($id)
+    {
+        $this->db->select('*');
+        $this->db->where('id_notification', $id);
+        $this->db->from('payment_notification');
+        return $this->db->get()->result();
+    }
+
+    public function deletePaymentById($id)
+    {
+        $this->db->where('id_notification', $id);
+        $this->db->delete('payment_notification');
+    }
 }

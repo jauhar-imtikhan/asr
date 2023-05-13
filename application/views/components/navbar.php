@@ -339,8 +339,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">Link</a></li>
+              <li><a href="<?= site_url('alamatpengiriman') ?>">Alamat Pengiriman</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -365,34 +364,24 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
-              <li class="dropdown messages-menu">
+              <li class="dropdown notifications-menu">
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success">3</span>
+                  <span class="label label-success"><?= $hitung_payment_notif ?></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 4 messages</li>
+                  <li class="header">Anda Memiliki <?= $hitung_payment_notif . " Riwayat Check Out" ?> <span class="pull-right "><a href="<?= site_url('allnotif/delpaymetall/' . $this->session->userdata('userid')) ?>" class="text-red"><i class="fa fa-trash"></i></a></span></li>
                   <li>
                     <!-- inner menu: contains the messages -->
                     <ul class="menu">
-                      <li><!-- start message -->
-                        <a href="#">
-                          <div class="pull-left">
-                            <!-- User Image -->
-                            <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                          </div>
-                          <!-- Message title and timestamp -->
-                          <h4>
-                            Support Team
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                          </h4>
-                          <!-- The message -->
-                          <dl>
-                            <dt>lorem</dt>
-                          </dl>
-                        </a>
-                      </li>
+                      <?php foreach ($get_payment_notif as $payment_notif) { ?>
+                        <li>
+                          <a href="<?= site_url('payment/tunai/' . $payment_notif->id_payment_notif) ?>">
+                            <i class="<?= $payment_notif->icon_notification ?>"></i> <?= $payment_notif->isi_notification ?>
+                          </a>
+                        </li>
+                      <?php } ?>
                       <!-- end message -->
                     </ul>
                     <!-- /.menu -->

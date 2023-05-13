@@ -23,7 +23,7 @@
 
    </div>
    <div style="margin-top: 15px;">
-     <div class="alert alert-warning">
+     <div class="alert alert-danger">
        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
        <strong><i class="fa fa-info"></i>nfo! </strong> Barang Yang Ada Pada Keranjang Akan Hilang Setelah Anda Keluar Dari Website!
      </div>
@@ -49,6 +49,7 @@
                      <dt class="h3"><?= ucfirst($barang['nama_barang']) ?></dt>
                      <dd class="h4"><?= Rp($barang['harga_barang']) ?></dd>
                      <dt class="h5"><?= $barang['deskripsi'] ?></dt>
+                     <dd class="h5"><?= Gr($barang['berat']) ?></dd>
                    </dl>
                  </div>
                </div>
@@ -63,6 +64,7 @@
                    <input type="hidden" name="harga_barang" value="<?= $barang['harga_barang'] ?>">
                    <input type="hidden" name="des_barang" value="<?= $barang['deskripsi'] ?>">
                    <input type="hidden" name="foto_barang" value="<?= $barang['foto'] ?>">
+                   <input type="hidden" name="berat" value="<?= $barang['berat'] ?>">
                    <li>
                      <span class="pull-right">
                        <?php for ($i = 0; $i < count($rating) && $i < $barang['rating']; $i++) { ?>

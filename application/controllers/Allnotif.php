@@ -23,4 +23,12 @@ class Allnotif extends CI_Controller
         $url = $this->input->server('HTTP_REFERER');
         redirect($url);
     }
+
+    public function delpaymetall($id)
+    {
+        $this->load->model('Notif_model');
+        $this->Notif_model->deletePaymentById($id);
+        $url = $this->input->server('HTTP_REFERER');
+        redirect($url);
+    }
 }
