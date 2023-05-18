@@ -4,7 +4,7 @@ class Payment extends CI_Controller
 {
     public function tunai($id)
     {
-        $row['datainvoice'] = $this->db->get('payment_submit', ['id_payment' => $id])->row_array();
+        $row['datainvoice'] = $this->db->get_where('payment_submit', ['id_payment' => $id])->row_array();
         $this->load->model('Notif_model');
         $notif['all_notif'] = $this->Notif_model->CountAllNotifById($this->session->userdata('userid'));
         $notif['getnotif'] = $this->Notif_model->get_all_notif($this->session->userdata('userid'));

@@ -1,10 +1,8 @@
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> -->
 <section class="content">
     <div class="container">
         <section class="header">
             <h3>Detail Barang</h3>
         </section>
-        <?= $this->session->userdata('userid') ?>
         <section class="body">
             <div class="row">
                 <?php foreach ($databarang as $barang) { ?>

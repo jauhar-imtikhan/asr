@@ -116,4 +116,46 @@ class Dashboard extends CI_Controller
         $this->cart->insert($data);
         redirect('dashboard/toko');
     }
+
+    public function payment($id)
+    {
+        $this->load->model('Notif_model');
+
+        $row['datainvoice'] = $this->db->get_where('payment_submit', ['id_payment' => $id])->row_array();
+        $notif['all_notif'] = $this->Notif_model->CountAllNotifById($this->session->userdata('userid'));
+        $notif['getnotif'] = $this->Notif_model->get_all_notif($this->session->userdata('userid'));
+        $notif['cart'] = $this->cart->contents();
+        $notif['get_payment_notif'] = $this->Notif_model->getAllPaymentNotif($this->session->userdata('userid'));
+        $notif['hitung_payment_notif'] = $this->Notif_model->hitungPaymentNotif($this->session->userdata('userid'));
+        $data = [
+            'title' => 'Riwayat Pembayaran',
+            'content' => $this->load->view('pages/payment/payment_tunai_history', $row, TRUE),
+            'sidebar' => $this->load->view('components/sidebar', '', TRUE),
+            'footer' => $this->load->view('components/footer', '', TRUE),
+            'navbar' => $this->load->view('components/navbar', $notif, TRUE),
+            'custom' => $this->load->view('components/settingpage', '', TRUE),
+        ];
+        $this->parser->parse('template', $data);
+    }
+
+    public function track()
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.binderbyte.com/v1/track?api_key=dbaeb79d0ea2c1feba0e6a83de8e75e473050a7dd56a8503fbdc26c7e54bc4fd&courier=jne&awb=8825112045716759',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo json_encode($response);
+    }
 }
